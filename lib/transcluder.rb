@@ -1,0 +1,3 @@
+module RSpecApib::Transcluder
+
+end
