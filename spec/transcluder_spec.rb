@@ -7,7 +7,7 @@ module RSpecApib
       file_path = File.join(fixtures_path, "parent.apib")
       str = ""
       Transcluder.each_line(file_path) do |line|
-        str = str + line
+        str += line
       end
       expect(str).to include("This is the root file")
       expect(str).to include("This Is The Child File")
