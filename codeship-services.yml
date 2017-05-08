@@ -1,0 +1,7 @@
+app:
+  build:
+    image: flomotlik/discourse
+    dockerfile_path: Dockerfile
+  cached: true
+  volumes:
+    - ./:/code

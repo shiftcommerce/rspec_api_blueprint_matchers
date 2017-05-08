@@ -9,6 +9,13 @@ covered in your test suite.  (Care should be taken with parallel specs if using 
 
 ## Installation
 
+This gem uses the standard api blueprint parser called "drafter" which must be
+installed before using this gem.
+
+To install it, please refer to https://github.com/apiaryio/drafter#build
+
+Once drafter is installed, please do the following :-
+
 Add this line to your application's Gemfile:
 
 ```ruby
