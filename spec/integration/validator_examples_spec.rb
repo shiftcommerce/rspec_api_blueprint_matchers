@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "spec_helper"
 module RSpecApib
   RSpec.describe TransactionValidator do
@@ -291,7 +292,6 @@ module RSpecApib
           expect(error_messages).to include(a_string_matching(/No candidates for/))
         end
 
-
       end
 
       context "example 7 - parameters" do
@@ -373,7 +373,6 @@ module RSpecApib
           end
         end
 
-
       end
 
       context "example 8 - attributes" do
@@ -449,7 +448,7 @@ module RSpecApib
 
         it "should validate when a correct request is made to POST /coupons (application/json)" do
           request = Request.new(double("Request", method: :post, url: URI.parse("/coupons"), request_headers: {"Accept" => "application/json", "Content-Type" => "application/json"}, body: "{\"percent_off\": 25, \"redeem_by\": 121212}"))
-          response = Response.new(double("Response", status: 200, body: {"id" => "anystring", "percent_off" => 25, "redeem_by" => 121212 }, response_headers: {"Content-Type" => "application/json"}))
+          response = Response.new(double("Response", status: 200, body: {"id" => "anystring", "percent_off" => 25, "redeem_by" => 121_212 }, response_headers: {"Content-Type" => "application/json"}))
           validator = TransactionValidator.new(path: "/coupons{?limit}", request_method: :post, content_type: "application/json", parser: parser, validate_request_schema: :when_defined)
 
           aggregate_failures do
@@ -457,7 +456,6 @@ module RSpecApib
             expect(error_messages).to be_empty
           end
         end
-
 
       end
 

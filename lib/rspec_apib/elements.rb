@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "rspec_apib/elements/base"
 require "rspec_apib/elements/parse_result"
 require "rspec_apib/elements/category"

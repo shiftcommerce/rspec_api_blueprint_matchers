@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "json-schema"
 require "rspec_apib/elements/http_message_payload"
 module RSpecApib
@@ -31,7 +32,7 @@ module RSpecApib
           reason: "Schema validation failure",
           details: errors
         }
-        return [failure_reason]
+        [failure_reason]
       end
 
       private

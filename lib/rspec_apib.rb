@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "rspec_apib/version"
 require "rspec_apib/parser"
 require "rspec_apib/extractors"
@@ -7,7 +8,7 @@ require "rspec_apib/config"
 require "rspec_apib/request"
 require "rspec_apib/response"
 module RSpecApib
-  ROOT_THREAD_VARS = :"rspec_apib"
+  ROOT_THREAD_VARS = :rspec_apib
   # The global configuration object
   # If a block is passed into this method, it is yielded with
   # the config object and all actions are performed from within the

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module RSpecApib
   module Element
     BaseStruct = Struct.new(:element, :meta, :attributes, :content, :parent)

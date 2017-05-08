@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "rspec_apib/elements/http_message_payload"
 module RSpecApib
   module Element
@@ -8,7 +9,7 @@ module RSpecApib
       # @return [Boolean] true if matches else false
       def matches?(response, options: {})
         matches_status?(response) &&
-        matches_content_type?(response)
+          matches_content_type?(response)
       end
 
       def status

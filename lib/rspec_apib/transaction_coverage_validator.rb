@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "rspec_apib/transaction_coverage_report"
 module RSpecApib
   class TransactionCoverageValidator
@@ -9,18 +10,18 @@ module RSpecApib
       errors = []
       reporter = TransactionCoverageReport.new(transactions: transactions, parser: parser)
       uncovered = reporter.uncovered_transactions
-      if uncovered.length > 0
+      unless uncovered.empty?
         uncovered.each do |tx|
           errors << self.class.uncovered_tx_message(tx)
         end
       end
       undocumented = reporter.undocumented_transactions
-      if undocumented.length > 0
+      unless undocumented.empty?
         undocumented.each do |tx|
           errors << self.class.undocumented_tx_message(tx)
         end
       end
-      if errors.length > 0
+      if !errors.empty?
         error_messages.concat errors
         error_messages << "Coverage Summary: #{uncovered.length} uncovered and #{undocumented.length} undocumented transactions"
         false

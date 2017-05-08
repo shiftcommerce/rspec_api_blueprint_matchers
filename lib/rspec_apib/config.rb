@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module RSpecApib
   class Config
     attr_accessor :default_blueprint_file

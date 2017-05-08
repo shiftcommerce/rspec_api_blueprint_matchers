@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "json"
 module RSpecApib
   class Response
@@ -27,13 +28,12 @@ module RSpecApib
       raw_response.response_headers
     end
 
-
     private
 
     attr_accessor :raw_response
 
     def is_json?
-      content_type=~/json/
+      content_type =~ /json/
     end
   end
 end

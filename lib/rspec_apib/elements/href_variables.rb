@@ -1,4 +1,5 @@
-require 'addressable'
+# frozen_string_literal: true
+require "addressable"
 module RSpecApib
   module Element
     # Represents a collection of href variables in api-elements (http://api-elements.readthedocs.io/en/latest/)

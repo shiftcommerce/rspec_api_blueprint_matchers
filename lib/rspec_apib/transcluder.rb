@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module RSpecApib::Transcluder
   REGEX = /:\[[^\]]*\]\(([^\)]*)\)/
   def self.each_line(file, &block)
@@ -15,7 +16,7 @@ module RSpecApib::Transcluder
   end
 
   def self.transclude(file, line, &block)
-    line.gsub!(REGEX) do |match|
+    line.gsub!(REGEX) do |_match|
       transclude_file = $1
       unless transclude_file =~ /^\//
         transclude_file = File.expand_path(transclude_file, File.dirname(file))
@@ -25,6 +26,5 @@ module RSpecApib::Transcluder
     end
     yield line
   end
-
 
 end

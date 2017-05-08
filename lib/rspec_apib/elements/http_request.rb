@@ -1,5 +1,6 @@
-require 'json-schema'
-require 'rspec_apib/elements/http_message_payload'
+# frozen_string_literal: true
+require "json-schema"
+require "rspec_apib/elements/http_message_payload"
 module RSpecApib
   module Element
     # Represents a http request in api-elements (http://api-elements.readthedocs.io/en/latest/)
@@ -10,8 +11,8 @@ module RSpecApib
       # @return [Boolean] true if matches else false
       def matches?(request, options: {})
         matches_method?(request) &&
-        matches_path?(request) &&
-        matches_headers?(request, options)
+          matches_path?(request) &&
+          matches_headers?(request, options)
       end
 
       # Inherit href and hrefVariables from any ancestor

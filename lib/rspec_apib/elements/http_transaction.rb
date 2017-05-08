@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module RSpecApib
   module Element
     # Represents a http transaction in api-elements (http://api-elements.readthedocs.io/en/latest/)
@@ -8,8 +9,8 @@ module RSpecApib
 
       def potential_match?(path:, request_method:, content_type:)
         potential_match_content_type?(content_type) &&
-        (request_method == :any || request_method == request.request_method) &&
-        (path == :any || request.path == path)
+          (request_method == :any || request_method == request.request_method) &&
+          (path == :any || request.path == path)
       end
 
       def validate_schema(request_in, response_in, validate_request_schema: :always, validate_response_schema: :always)

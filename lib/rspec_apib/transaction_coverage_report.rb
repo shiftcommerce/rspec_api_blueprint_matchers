@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module RSpecApib
   class TransactionCoverageReport
     def initialize(transactions:, parser: RSpecApib.config.default_parser)
@@ -6,8 +7,8 @@ module RSpecApib
     end
 
     def uncovered_transactions
-      documented_transaction_tracker = parser.http_transactions.inject({}) do |acc, t|
-        acc[t]=false
+      documented_transaction_tracker = parser.http_transactions.each_with_object({}) do |t, acc|
+        acc[t] = false
         acc
       end
       transactions.each do |requested_tx|
@@ -15,7 +16,7 @@ module RSpecApib
           documented_transaction_tracker[dtx] = true if dtx.matches?(requested_tx.request, requested_tx.response)
         end
       end
-      documented_transaction_tracker.reject {|k,v| v}.keys
+      documented_transaction_tracker.reject {|_k, v| v}.keys
     end
 
     def undocumented_transactions

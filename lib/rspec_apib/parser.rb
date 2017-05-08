@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "rspec_apib/transcluder"
 require "rspec_apib/extractors"
 require "rspec_apib/elements"
@@ -65,7 +66,7 @@ module RSpecApib
 
     def call_parser(file)
       op = nil
-      Open3.popen3("#{bin_path} -f json") do |stdin, stdout, stderr, wait_thr|
+      Open3.popen3("#{bin_path} -f json") do |stdin, stdout, _stderr, wait_thr|
         transcluder.each_line(file) do |line|
           stdin.write line
         end

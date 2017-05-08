@@ -1,7 +1,8 @@
 # coding: utf-8
-lib = File.expand_path('../lib', __FILE__)
+# frozen_string_literal: true
+lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'rspec_apib/version'
+require "rspec_apib/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "rspec_api_blueprint_matchers"
@@ -9,8 +10,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Shift Commerce Ltd"]
   spec.email         = ["team@shiftcommerce.com"]
 
-  spec.summary       = %q{API Blueprint Tools For RSpec}
-  spec.description   = %q{API Blueprint Tools For RSpec - Matching http transactions against an API Blueprint document to ensure the API that you are implementing matches the API that is documented which your clients will expect to be the case.}
+  spec.summary       = "API Blueprint Tools For RSpec"
+  spec.description   = "API Blueprint Tools For RSpec - Matching http transactions against an API Blueprint document to ensure the API that you are implementing matches the API that is documented which your clients will expect to be the case."
   spec.homepage      = "https://github.com/shiftcommerce/rspec_api_blueprint_matchers"
   spec.license       = "MIT"
 
@@ -26,4 +27,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 1.14"
   spec.add_development_dependency "byebug"
   spec.add_development_dependency "rake", "~> 10.0"
+  spec.add_development_dependency "rubocop", "0.46"
 end

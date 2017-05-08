@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+require "forwardable"
 module RSpecApib
   class Request
+    extend Forwardable
     def initialize(request)
       self.raw_request = request
     end
@@ -8,19 +11,15 @@ module RSpecApib
       raw_request.method
     end
 
-    def url
-      raw_request.url
-    end
+    delegate url: :raw_request
 
     def validate_body_with_json_schema?
-      request_method != :get && is_json?
+      request_method != :get && json?
     end
 
     # The request body
     # @return [String] The request body - always as a string
-    def body
-      raw_request.body
-    end
+    delegate body: :raw_request
 
     def content_type
       headers["Content-Type"]
@@ -30,15 +29,13 @@ module RSpecApib
       raw_request.request_headers
     end
 
-
     private
 
     attr_accessor :raw_request
 
-    def is_json?
+    def json?
       content_type =~ /json/
     end
-
 
   end
 end

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module RSpecApib
   class TransactionValidator
     # validate_request_schema can be :always, :never, :when_defined

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "rspec/matchers"
 require "rspec_apib/transaction_validator"
 require "rspec_apib/transaction_coverage_validator"
@@ -16,12 +17,12 @@ RSpec::Matchers.define :match_api_docs_for do |path:, request_method:, content_t
 
   end
 
-  failure_message do |actual|
+  failure_message do |_actual|
     error_messages.join("\n")
   end
 end
 
-RSpec::Matchers.define :have_covered_all_api_documentation do | parser: RSpecApib.config.default_parser |
+RSpec::Matchers.define :have_covered_all_api_documentation do |parser: RSpecApib.config.default_parser|
   error_messages = []
   Transaction = Struct.new(:request, :response)
   match do |actual|
@@ -34,7 +35,7 @@ RSpec::Matchers.define :have_covered_all_api_documentation do | parser: RSpecApi
 
   end
 
-  failure_message do |actual|
+  failure_message do |_actual|
     error_messages.join("\n")
   end
 end
