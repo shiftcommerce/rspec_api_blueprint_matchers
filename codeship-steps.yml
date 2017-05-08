@@ -1,4 +1,6 @@
-- type: parallel
+- type: serial
   steps:
+  - service: bundle
+    command: bundle install
   - service: app
-    command: bundle install && bundle exec rspec
+    command: bundle exec rspec
