@@ -1,6 +1,4 @@
 - type: serial
   steps:
-  - service: bundle
-    command: bundle install
   - service: app
-    command: bundle exec rspec
+    command: bash -c "bundle install && bundle exec rspec"
