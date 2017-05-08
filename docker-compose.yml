@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+  test:
+    image: rspec_api_blueprint_matchers
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: bash -c "bundle install && bundle exec rspec"
+    volumes:
+      - .:/app
+      - rubygems_cache:/rubygems
+    environment:
+      GEM_HOME: '/rubygems'
+      BUNDLE_PATH: '/rubygems'
+volumes:
+  rubygems_cache:
