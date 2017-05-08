@@ -2,8 +2,8 @@ require "json-schema"
 require "rspec_apib/elements/http_message_payload"
 module RSpecApib
   module Element
+    # Represents a http message payload in api-elements (http://api-elements.readthedocs.io/en/latest/)
     class HttpMessagePayload < Base
-
       # The content type if defined else nil
       # @return [String | NilClass] The content type header or nil
       def content_type

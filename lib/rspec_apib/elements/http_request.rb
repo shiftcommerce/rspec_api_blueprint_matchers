@@ -1,7 +1,8 @@
-require "json-schema"
-require "rspec_apib/elements/http_message_payload"
+require 'json-schema'
+require 'rspec_apib/elements/http_message_payload'
 module RSpecApib
   module Element
+    # Represents a http request in api-elements (http://api-elements.readthedocs.io/en/latest/)
     class HttpRequest < HttpMessagePayload
 
       # Indicates if the incoming request matches the method, path and path vars
@@ -30,15 +31,25 @@ module RSpecApib
         attributes && attributes["href"].to_s
       end
 
+      def self.attributes_schema
+        {
+          href: "TemplatedHref"
+        }
+      end
+
       private
 
-      def matches_headers?(request_or_response, options)
-        headers = attributes && attributes["headers"] && attributes["headers"].keep_if {|k, v| k == "Content-Type" || k == "Accept"}
+      def matches_headers?(request_or_response, _options)
+        headers = compared_headers
         return true if headers.nil?
         headers.each_pair do |header_key, header_value|
           return false unless request_or_response.headers.key?(header_key) &&
                               request_or_response.headers[header_key] == header_value
         end
+      end
+
+      def compared_headers
+        attributes && attributes["headers"] && attributes["headers"].keep_if {|k, _v| k == "Content-Type" || k == "Accept"}
       end
 
       def matches_method?(request)
@@ -47,12 +58,6 @@ module RSpecApib
 
       def matches_path?(request)
         attributes && attributes["href"] && attributes["href"].matches_path?(request)
-      end
-
-      def self.attributes_schema
-        {
-          href: "TemplatedHref"
-        }
       end
     end
   end

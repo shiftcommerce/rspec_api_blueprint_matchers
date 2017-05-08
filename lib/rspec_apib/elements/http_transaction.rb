@@ -1,7 +1,7 @@
 module RSpecApib
   module Element
+    # Represents a http transaction in api-elements (http://api-elements.readthedocs.io/en/latest/)
     class HttpTransaction < Base
-
       def matches?(request_in, response_in, options: {})
         request.matches?(request_in, options: options) && response.matches?(response_in, options: options)
       end

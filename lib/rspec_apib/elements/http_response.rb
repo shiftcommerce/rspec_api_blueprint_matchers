@@ -1,6 +1,7 @@
 require "rspec_apib/elements/http_message_payload"
 module RSpecApib
   module Element
+    # Represents a http response in api-elements (http://api-elements.readthedocs.io/en/latest/)
     class HttpResponse < HttpMessagePayload
       # Indicates if the incoming request matches the method, path and path vars
       # @param [::RSpecApib::Request] The incoming request - normalized

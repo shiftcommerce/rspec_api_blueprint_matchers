@@ -1,8 +1,10 @@
 module RSpecApib
   module Element
-    class Base < Struct.new(:element, :meta, :attributes, :content, :parent)
+    BaseStruct = Struct.new(:element, :meta, :attributes, :content, :parent)
 
-      def inspect(*args)
+    # A base class for all objects in api-elements (http://api-elements.readthedocs.io/en/latest/)
+    class Base < BaseStruct
+      def inspect
         "##{self.class} (element: #{element}, meta: #{meta}, attributes: #{attributes.inspect}, content: #{content.inspect}, parent: ##{parent.class})"
       end
 
@@ -14,11 +16,11 @@ module RSpecApib
 
       def self.parse(node_or_nodes, index:, parent:, klass: nil)
         return node_or_nodes.map { |node| parse(node, index: index, parent: parent) } if node_or_nodes.is_a?(::Array)
-        return transformed_basic_hash(node_or_nodes, index: index, parent: parent) if is_basic_hash?(node_or_nodes)
-        return node_or_nodes unless !klass.nil? || is_base_element?(node_or_nodes)
+        return transformed_basic_hash(node_or_nodes, index: index, parent: parent) if basic_hash?(node_or_nodes)
+        return node_or_nodes unless !klass.nil? || base_element?(node_or_nodes)
         hash = node_or_nodes
         klass_name = klass
-        klass_name ||= hash["element"].slice(0,1).capitalize + hash["element"].slice(1..-1).gsub(" ", "")
+        klass_name ||= hash["element"].slice(0, 1).capitalize + hash["element"].slice(1..-1).delete(" ")
         return node_or_nodes unless RSpecApib::Element.const_defined?(klass_name)
         klass = RSpecApib::Element.const_get(klass_name)
         index[klass] ||= []
@@ -61,11 +63,9 @@ module RSpecApib
         {}
       end
 
-      def self.is_base_element?(node)
+      def self.base_element?(node)
         node.is_a?(::Hash) && node.keys.include?("element")
       end
-
-      private
 
       def self.attributes_schema
         {}
@@ -81,8 +81,8 @@ module RSpecApib
         node
       end
 
-      def self.is_basic_hash?(node)
-        node.is_a?(::Hash) && !is_base_element?(node)
+      def self.basic_hash?(node)
+        node.is_a?(::Hash) && !base_element?(node)
       end
 
       def self.transformed_basic_hash(node, index:, parent:)
