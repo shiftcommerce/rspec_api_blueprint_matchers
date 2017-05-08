@@ -1,4 +1,4 @@
 - type: parallel
   steps:
-  - service: app
-    command: ./script/ci/ci.parallel spec
+  - service: rspec
+    command: bundle exec rspec
