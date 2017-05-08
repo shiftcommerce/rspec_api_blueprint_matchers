@@ -1,4 +1,4 @@
 - type: parallel
   steps:
-  - service: rspec
+  - service: app
     command: bundle exec rspec
