@@ -3,8 +3,6 @@
 # https://docs.codeclimate.com/docs/getting-started-configuration
 
 engines:
-  bundler-audit:
-    enabled: true
   duplication:
     enabled: true
     config:
