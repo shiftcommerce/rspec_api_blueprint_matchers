@@ -38,9 +38,8 @@ module RSpecApib
       private
 
       def body_schema_asset
-        content.find { |n| n.is_a?(Asset) && n.meta && n.meta["classes"] && n.meta["classes"].include?("messageBodySchema")}
+        content.find { |node| node.is_a?(Asset) && node.meta && node.meta["classes"] && node.meta["classes"].include?("messageBodySchema")}
       end
-
     end
   end
 end

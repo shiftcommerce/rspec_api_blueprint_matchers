@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 module RSpecApib
+  # Configuration
   class Config
     attr_accessor :default_blueprint_file
     def batch_configure
@@ -12,7 +13,7 @@ module RSpecApib
     # parsed the default blueprint file
     # @return [::RSpecApib::Parser] The parser
     def default_parser
-      @default_parser ||= Parser.new.tap { |p| p.parse_file(default_blueprint_file) }
+      @default_parser ||= Parser.new.tap { |parser| parser.parse_file(default_blueprint_file) }
     end
   end
 end

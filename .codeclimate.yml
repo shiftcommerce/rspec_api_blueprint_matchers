@@ -13,10 +13,6 @@ engines:
     enabled: true
   rubocop:
     enabled: true
-  reek:
-    enabled: true
-  eslint:
-    enabled: true
 ratings:
   paths:
   - Gemfile.lock
