@@ -3,8 +3,6 @@
 # https://docs.codeclimate.com/docs/getting-started-configuration
 
 engines:
-  brakeman:
-    enabled: true
   bundler-audit:
     enabled: true
   duplication:
