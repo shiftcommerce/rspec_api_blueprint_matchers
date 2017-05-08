@@ -1,7 +1,7 @@
 # RspecApib
 
 This gem allows your rspec test suite to validate requests and responses against
-your api blueprint () documentation.
+your api blueprint documentation.
 
 It also allows for validating that all documented http transactions are
 covered in your test suite.  (Care should be taken with parallel specs if using this)
