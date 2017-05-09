@@ -12,7 +12,8 @@ RSpec::Matchers.define :match_api_docs_for do |path:, request_method:, content_t
       error_messages << "Expected the transaction to match api docs for #{method}:#{path} but the provided parser was invalid"
       false
     else
-      ::RSpecApib::TransactionValidator.new(path: path, request_method: request_method, content_type: content_type, parser: parser).validate(request: ::RSpecApib.normalize_request(actual.request), response: ::RSpecApib.normalize_response(actual.response), error_messages: error_messages)
+      validator = ::RSpecApib::TransactionValidator.new(path: path, request_method: request_method, content_type: content_type, parser: parser)
+      validator.validate(request: ::RSpecApib.normalize_request(actual.request), response: ::RSpecApib.normalize_response(actual.response), error_messages: error_messages)
     end
 
   end

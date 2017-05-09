@@ -48,7 +48,7 @@ Metrics/CyclomaticComplexity:
 # Checks the length of lines in the source code.
 
 Metrics/LineLength:
-  Max: 160
+  Max: 180
   AllowHereDoc: true
   AllowURI: true
   URISchemes:
@@ -80,7 +80,7 @@ Metrics/ModuleLength:
 # Checks for methods with too many parameters.
 
 Metrics/ParameterLists:
-  Max: 5
+  Max: 6
   CountKeywordArgs: true
 
 
@@ -91,4 +91,3 @@ Metrics/ParameterLists:
 
 Metrics/PerceivedComplexity:
   Max: 7
-

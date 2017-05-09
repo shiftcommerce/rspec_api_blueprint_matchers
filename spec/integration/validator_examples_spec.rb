@@ -4,7 +4,9 @@ module RSpecApib
   RSpec.describe TransactionValidator do
     let(:examples_path) { File.expand_path("../fixtures/examples", File.dirname(__FILE__)) }
     let(:parser) { Parser.new.tap { |p| p.parse_file(file) } }
-    let(:error_messages) { [] } # Used in every example as as collector for errors
+
+    # Used in every example as as collector for errors
+    let(:error_messages) { [] }
     context "#validate" do
       context "example 1 - simplest api" do
         let(:file) { File.join(examples_path, "01. Simplest API.md") }

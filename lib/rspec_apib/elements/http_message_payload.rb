@@ -23,6 +23,12 @@ module RSpecApib
           }
           return [failure_reason]
         end
+        validate_json_schema(schema, request_or_response)
+      end
+
+      private
+
+      def validate_json_schema(schema, request_or_response)
         schema = JSON.parse schema.content
         errors = JSON::Validator.fully_validate(schema, request_or_response.body)
         return [] if errors.length.zero?
@@ -34,8 +40,6 @@ module RSpecApib
         }
         [failure_reason]
       end
-
-      private
 
       def body_schema_asset
         content.find { |node| node.is_a?(Asset) && node.meta && node.meta["classes"] && node.meta["classes"].include?("messageBodySchema")}

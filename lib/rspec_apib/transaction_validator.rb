@@ -12,25 +12,32 @@ module RSpecApib
     end
 
     def validate(request:, response:, error_messages:, options: {})
-      candidates = transaction_candidates(request: request, response: response, options: options)
-      results = candidates.map do |candidate|
-        candidate.validate_schema(request, response, validate_request_schema: validate_request_schema, validate_response_schema: validate_response_schema)
-      end
-
+      results = matched_transactions(request, response, options)
       if results.empty?
         error_messages << "No candidates for #{request.inspect} with response #{response.inspect}"
         return false
       end
 
       return true unless results.flatten.find {|r| !r[:request_errors].empty? || !r[:response_errors].empty?}
-      results.each do |result|
-        error_messages << "The request validation failed - reasons #{result[:request_errors].join("\n")}" unless result[:request_errors].empty?
-        error_messages << "The response validation failed - reasons #{result[:response_errors].join("\n")}" unless result[:response_errors].empty?
-      end
+      report_error_messages(results, error_messages)
       false
     end
 
     private
+
+    def report_error_messages(results, error_messages)
+      results.each do |result|
+        error_messages << "The request validation failed - reasons #{result[:request_errors].join("\n")}" unless result[:request_errors].empty?
+        error_messages << "The response validation failed - reasons #{result[:response_errors].join("\n")}" unless result[:response_errors].empty?
+      end
+    end
+
+    def matched_transactions(request, response, options)
+      candidates = transaction_candidates(request: request, response: response, options: options)
+      candidates.map do |candidate|
+        candidate.validate_schema(request, response, validate_request_schema: validate_request_schema, validate_response_schema: validate_response_schema)
+      end
+    end
 
     def transaction_candidates(request:, response:, options: {})
       transactions = parser.http_transactions.select do |t|

@@ -72,7 +72,7 @@ module RSpecApib
       Open3.popen3("#{bin_path} -f json") do |stdin, stdout, _stderr, wait_thr|
         send_document(file: file, buffer: stdin)
         op = stdout.read
-        exit_status = wait_thr.value
+        wait_thr.value
       end
       op
     end
