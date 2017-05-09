@@ -19,10 +19,13 @@ module RSpecApib
         return node_or_nodes.map { |node| parse(node, index: index, parent: parent) } if node_or_nodes.is_a?(::Array)
         return transformed_basic_hash(node_or_nodes, index: index, parent: parent) if basic_hash?(node_or_nodes)
         return node_or_nodes unless !klass.nil? || base_element?(node_or_nodes)
-        hash = node_or_nodes
+        parse_node(node_or_nodes, index: index, parent: parent, klass: klass)
+      end
+
+      def self.parse_node(hash, index:, parent:, klass: nil)
         klass_name = klass
         klass_name ||= hash["element"].slice(0, 1).capitalize + hash["element"].slice(1..-1).delete(" ")
-        return node_or_nodes unless RSpecApib::Element.const_defined?(klass_name)
+        return hash unless RSpecApib::Element.const_defined?(klass_name)
         klass = RSpecApib::Element.const_get(klass_name)
         index[klass] ||= []
         element = klass.from_hash(hash, index: index, parent: parent)

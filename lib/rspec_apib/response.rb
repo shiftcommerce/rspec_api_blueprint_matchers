@@ -17,7 +17,7 @@ module RSpecApib
     end
 
     def validate_body_with_json_schema?
-      is_json?
+      json?
     end
 
     def content_type
@@ -32,7 +32,7 @@ module RSpecApib
 
     attr_accessor :raw_response
 
-    def is_json?
+    def json?
       content_type =~ /json/
     end
   end

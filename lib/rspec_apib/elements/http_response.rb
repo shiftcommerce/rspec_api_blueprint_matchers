@@ -7,6 +7,7 @@ module RSpecApib
       # Indicates if the incoming request matches the method, path and path vars
       # @param [::RSpecApib::Request] The incoming request - normalized
       # @return [Boolean] true if matches else false
+      # rubocop:disable Lint/UnusedMethodArgument
       def matches?(response, options: {})
         matches_status?(response) &&
           matches_content_type?(response)
