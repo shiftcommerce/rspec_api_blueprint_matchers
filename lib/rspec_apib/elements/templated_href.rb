@@ -2,8 +2,11 @@
 require "addressable"
 module RSpecApib
   module Element
+    # Represents a templated href in api-elements (http://api-elements.readthedocs.io/en/latest/)
     class TemplatedHref < Base
-      # Note this is not really a hash !!
+      # Note this is not really a hash but the interface named it
+      # that early on as everything was a hash !!
+      # rubocop:disable Lint/UnusedMethodArgument
       def self.from_hash(hash, index:, parent:)
         new("templatedHref", nil, nil, hash, parent)
       end
@@ -23,10 +26,10 @@ module RSpecApib
       end
 
       def path
-        a1 = Addressable::URI.parse(url)
-        a1.path, a1.query, a1.fragment = nil
-        a2 = Addressable::URI.parse(url)
-        a2.to_s.gsub(a1.to_s, "")
+        url_1 = Addressable::URI.parse(url)
+        url_1.path, url_1.query, url_1.fragment = nil
+        url_2 = Addressable::URI.parse(url)
+        url_2.to_s.gsub(url_1.to_s, "")
       end
 
       def self.host_from_parent(node)

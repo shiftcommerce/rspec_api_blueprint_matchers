@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 require "rspec_apib/version"
 require "rspec_apib/parser"
-require "rspec_apib/extractors"
 require "rspec_apib/transaction_validator"
 require "rspec_apib/rspec"
 require "rspec_apib/config"

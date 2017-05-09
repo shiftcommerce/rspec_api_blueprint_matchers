@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 require "rspec_apib/transcluder"
-require "rspec_apib/extractors"
 require "rspec_apib/elements"
 require "open3"
 require "json"
