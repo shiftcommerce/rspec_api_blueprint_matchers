@@ -18,7 +18,7 @@ module RSpecApib
         return false
       end
 
-      return true unless results.flatten.find {|r| !r[:request_errors].empty? || !r[:response_errors].empty?}
+      return true if results.flatten.find {|r| r[:request_errors].empty? && r[:response_errors].empty?}
       report_error_messages(results, error_messages)
       false
     end
